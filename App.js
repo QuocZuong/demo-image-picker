@@ -4,11 +4,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
 export default function App() {
-  
   const [image, setImage] = useState(null);
-
   const [hasPermission, setHasPermission] = useState(null);
 
+  /** Request library permission */
  useEffect(() => {
     (async () => {
      const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync(); 
@@ -19,8 +18,8 @@ export default function App() {
     })();
  }, [])
 
+  /** Pick image from library */
   const pickImage = async () => {
-
     if(!hasPermission) {
       alert("Permission is required to access the library");
       return;
